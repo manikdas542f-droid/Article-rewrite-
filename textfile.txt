@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Article Rewriter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+        h1 { text-align: center; color: #333; }
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin: 20px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover { background: #0056b3; }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            min-height: 200px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .ads {
+            margin-top: 40px;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .ad-box {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Simple Article Rewriter Tool</h1>
+    <p>Paste your article below and click Rewrite to paraphrase it.</p>
+
+    <textarea id="inputText" placeholder="Paste your original article here..."></textarea>
+    <br>
+    <button onclick="rewriteArticle()">Rewrite Article</button>
+
+    <h2>Rewritten Article:</h2>
+    <div id="output"></div>
+</div>
+
+<!-- ADS SECTION -->
+<div class="ads">
+
+    <div class="ad-box">
+        <script>
+            atOptions = {
+                'key' : 'e80396090b4c8e6d34f31a4db1e5b991',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script src="https://www.highperformanceformat.com/e80396090b4c8e6d34f31a4db1e5b991/invoke.js"></script>
+    </div>
+
+    <div class="ad-box">
+        <script src="https://pl27688425.effectivegatecpm.com/d9/49/6c/d9496c058313718fceaafe70d5241a63.js"></script>
+    </div>
+
+    <div class="ad-box">
+        <script>
+            atOptions = {
+                'key' : 'e80396090b4c8e6d34f31a4db1e5b991',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+            };
+        </script>
+        <script src="https://www.highperformanceformat.com/e80396090b4c8e6d34f31a4db1e5b991/invoke.js"></script>
+    </div>
+
+    <div class="ad-box">
+        <script src="https://pl27688425.effectivegatecpm.com/d9/49/6c/d9496c058313718fceaafe70d5241a63.js"></script>
+    </div>
+
+</div>
+
+<script>
+const synonyms = {
+    "good": ["great","excellent","fine","wonderful"],
+    "bad": ["poor","terrible","awful"],
+    "big": ["large","huge","massive"],
+    "small": ["tiny","little","compact"],
+    "important": ["crucial","vital","key"],
+    "use": ["utilize","apply","employ"],
+    "make": ["create","build","develop"],
+    "get": ["obtain","receive","gain"]
+};
+
+function getRandomSynonym(word) {
+    const w = word.toLowerCase();
+    return synonyms[w]
+        ? synonyms[w][Math.floor(Math.random() * synonyms[w].length)]
+        : word;
+}
+
+function rewriteSentence(sentence) {
+    return sentence.split(/\s+/).map(word => {
+        const match = word.match(/([a-zA-Z]+)([^a-zA-Z]*)/);
+        return match ? getRandomSynonym(match[1]) + match[2] : word;
+    }).join(' ');
+}
+
+function rewriteArticle() {
+    const input = document.getElementById('inputText').value.trim();
+    if (!input) {
+        document.getElementById('output').innerText = "Please enter text!";
+        return;
+    }
+
+    const paragraphs = input.split('\n').filter(p => p.trim());
+    const rewritten = paragraphs.map(p => {
+        const sentences = p.split(/(?<=[.!?])\s+/);
+        return sentences.map(s => rewriteSentence(s)).join(' ');
+    });
+
+    document.getElementById('output').innerText = rewritten.join('\n\n');
+}
+</script>
+
+</body>
+</html>
